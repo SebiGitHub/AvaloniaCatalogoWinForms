@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Avalonia.Controls;
+using Avalonia.Media.Imaging;
 using AvaloniaApplication1.model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -26,6 +27,8 @@ public partial class Mainviewmodel : ObservableObject
         
         [ObservableProperty] private String _dato;
         [ObservableProperty] private String _imageDisplay;
+        
+        [ObservableProperty] private Bitmap _imagen;
 
         public Mainviewmodel()
         {
@@ -33,7 +36,8 @@ public partial class Mainviewmodel : ObservableObject
             controlador = CtrBaraja.getControlador(); // Obtiene la instancia del controlador
             listaArticulos = controlador.ObtenerListaMagica(); // Carga la lista de artículos mágicos
             MostrarArticulo();                      // Muestra el primer artículo de la lista
-            
+            Imagen = new Bitmap("/assets/img/incognita.png");
+
         }
         
         //[ObservableProperty] public string _nombre;
@@ -75,7 +79,7 @@ public partial class Mainviewmodel : ObservableObject
         {
             // Limpiar los campos si la lista está vacía
             Dato = "";
-            ImageDisplay = Image.FromFile("incognita.jpg");
+            Imagen = new Bitmap("/assets/img/incognita.png");
         }
 
         // Muestra el artículo actual en los campos de texto y la imagen correspondiente
@@ -84,8 +88,7 @@ public partial class Mainviewmodel : ObservableObject
             listaArticulos = controlador.ObtenerListaMagica(); // Actualiza la lista de artículos
 
             // Configura la imagen predeterminada si no se encuentra ninguna
-            ImageDisplay.Image = Image.FromFile("incognita.jpg");
-            ImageDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
+            Imagen = new Bitmap("/assets/img/incognita.png");
 
             if (listaArticulos != null && listaArticulos.Count > 0)
             {
@@ -100,7 +103,7 @@ public partial class Mainviewmodel : ObservableObject
                 string imagePath = $"IMG/{articulo.ImagenId}.jpg";
                 if (File.Exists(imagePath))
                 {
-                    ImageDisplay.Image = Image.FromFile(imagePath);
+                    Imagen = new Bitmap(imagePath);
                 }
             }
             else
@@ -165,7 +168,7 @@ public partial class Mainviewmodel : ObservableObject
             else
                 {
                     //Imagen si es null setea la imagen como 0, sino toma el orden que le toca.
-                    if (pictureBoxPD == null)
+                    if (ImageDisplay == null)
                     {
                         aux = 0;
                     }
@@ -236,9 +239,9 @@ public partial class Mainviewmodel : ObservableObject
                 rutaImagenOriginal = openFileDialog.FileName;
 
                 // Aquí puedes almacenar la ruta de la imagen en una variable, como por ejemplo un campo de la clase 'Magia'
-                pictureBox.Image = Image.FromFile(rutaImagenOriginal);
+                ImageDisplay.Image = Image.FromFile(rutaImagenOriginal);
 
-                pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                ImageDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 controlador.guardarImagen(rutaImagenOriginal, ++CtrBaraja.contadorId);
             }
