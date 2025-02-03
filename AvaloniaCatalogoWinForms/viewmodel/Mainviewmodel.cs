@@ -20,16 +20,25 @@ public partial class Mainviewmodel : ObservableObject
         private int aux;
         
         
-        [ObservableProperty] private bool _btnDeshabilitar;
-        [ObservableProperty] private String _btnAceptar;
-        [ObservableProperty] private String _btnCancelar;
+        //Botones
+        [ObservableProperty] private bool _btnHabilitar;
+        [ObservableProperty] private String _btnBorrar;
+        [ObservableProperty] private bool _btnCargarImagen;
+        [ObservableProperty] private String _btnAnterior;
+        [ObservableProperty] private String _btnSiguiente;
         
+        //TextBox
+        [ObservableProperty] private String _txBNombre;
+        [ObservableProperty] private String _txBCategoria;
+        [ObservableProperty] private String _txBDificultad;
+        [ObservableProperty] private String _txBPrecio;
+        [ObservableProperty] private String _txBDesc;
+        [ObservableProperty] private bool _habilitar;
         
-        [ObservableProperty] private String _dato;
-        [ObservableProperty] private String _imageDisplay;
-        
+        //Imagen
         [ObservableProperty] private Bitmap _imagen;
 
+        
         public Mainviewmodel()
         {
             //noEditable();                           // Deshabilita la edición de los campos inicialmente
@@ -39,6 +48,7 @@ public partial class Mainviewmodel : ObservableObject
             Imagen = new Bitmap("/assets/img/incognita.png");
 
         }
+        
         
         //[ObservableProperty] public string _nombre;
         /*
@@ -50,23 +60,54 @@ public partial class Mainviewmodel : ObservableObject
                 }
          */
         
+        
+        
         //Habilitar y deshabilitar los botones además de modificar el texto
         [RelayCommand]
-        private void EstadoAnadir()
+        private void EstadoAnadir(bool enModoEdicion)
         {
-            if (!enModoEdicion)
+            if (enModoEdicion)
             {
-                BtnDeshabilitar = false;
-                BtnAceptar = "Aceptar";
-                BtnCancelar = "Cancelar";
+                BtnHabilitar = false;
+                BtnCargarImagen = true;
+                BtnBorrar = "LIMPIAR";
+                BtnSiguiente = "GUARDAR";
+                BtnAnterior = "CANCELAR";
+                Imagen = new Bitmap("/assets/img/incognita.png");
+                
+                Habilitar = true;
+                
+                if (Imagen == null)
+                {
+                    aux = 0;
+                }
+                else
+                {
+                    aux = viewmodel.CtrBaraja.contadorId;
+                }
+                    
+                Baraja nuevaBaraja = new Baraja
+                {
+                    Nombre = TxBNombre,
+                    Categoria = TxBCategoria,
+                    Precio = double.TryParse(TxBPrecio, out double precio) ? precio : 0,
+                    Dificultad = TxBDificultad.ToLower() == "si",
+                    Desc = TxBDesc,
+                    ImagenId = aux 
+                };
+                CtrBaraja.getControlador().agregarArticuloMagico(nuevaBaraja);
             }
             else
             {
-                BtnDeshabilitar = true;
-                BtnAceptar = "Anterior";
-                BtnCancelar = "Siguiente";
-            }
+                
+                BtnHabilitar = true;
+                BtnCargarImagen = false;
+                BtnBorrar = "BORRAR";
+                BtnAnterior = "ANTERIOR";
+                BtnSiguiente = "SIGUIENTE";
 
+                Habilitar = false;
+            }
         }
         
         
@@ -78,7 +119,11 @@ public partial class Mainviewmodel : ObservableObject
         public void limpiarCampos()
         {
             // Limpiar los campos si la lista está vacía
-            Dato = "";
+            TxBNombre = "";
+            TxBCategoria = "";
+            TxBDificultad = "";
+            TxBPrecio = "";
+            TxBDesc = "";
             Imagen = new Bitmap("/assets/img/incognita.png");
         }
 
@@ -93,11 +138,11 @@ public partial class Mainviewmodel : ObservableObject
             if (listaArticulos != null && listaArticulos.Count > 0)
             {
                 Baraja articulo = listaArticulos[posicionActual];
-                txtNombre.Text = articulo.Nombre;
-                txtCategoria.Text = articulo.Categoria;
-                txtDificultad.Text = articulo.Dificultad.ToString();
-                txtPrecio.Text = articulo.Precio.ToString("F2");     // Formato de precio con 2 decimales
-                txtDesc.Text = articulo.Desc;
+                TxBNombre = articulo.Nombre;
+                TxBCategoria = articulo.Categoria;
+                TxBDificultad = articulo.Dificultad.ToString();
+                TxBPrecio = articulo.Precio.ToString("F2");     // Formato de precio con 2 decimales
+                TxBDesc = articulo.Desc;
 
                 // Verifica si existe una imagen asociada al artículo
                 string imagePath = $"IMG/{articulo.ImagenId}.jpg";
@@ -134,7 +179,7 @@ public partial class Mainviewmodel : ObservableObject
         }
 
         // Evento del botón "Eliminar" para eliminar el artículo actual
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnBorrar_Click()
         {
             if (listaArticulos.Count > 0)
             {
@@ -151,57 +196,20 @@ public partial class Mainviewmodel : ObservableObject
             }
         }
         
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAnadir_Click()
         {
-            if (!enModoEdicion)
+            enModoEdicion = true;
+            articuloOriginal = listaArticulos.Count > 0 ? listaArticulos[posicionActual] : null;
+            limpiarCampos();
+            EstadoAnadir(enModoEdicion);
+
+            if(BtnSiguiente == "GUARDAR" || todos los campos estan bien)
             {
-                btnImagen.Enabled = true;
-                articuloOriginal = listaArticulos.Count > 0 ? listaArticulos[posicionActual] : null;
-
-                limpiarCampos(); // Prepara el formulario para una nueva entrada
-                SetTextBoxReadOnly(true); // Habilita la edición
-
-                btnAgregar.Text = "Guardar";
-                enModoEdicion = true;
-                btnSiguiente.Enabled = btnAnterior.Enabled = false; // Deshabilita la navegación
+                controlador.GuardarListaEnFichero();
+                // Desactivar el modo edición
+                enModoEdicion = false;
+                EstadoAnadir(enModoEdicion);
             }
-            else
-                {
-                    //Imagen si es null setea la imagen como 0, sino toma el orden que le toca.
-                    if (ImageDisplay == null)
-                    {
-                        aux = 0;
-                    }
-                    else
-                    {
-                        aux = viewmodel.CtrBaraja.contadorId;
-                    }
-                    
-                    Baraja CtrBaraja = new Baraja
-                    {
-                        Nombre = txtNombre.Text,
-                        Categoria = txtCategoria.Text,
-                        Precio = double.TryParse(txtPrecio.Text, out double precio) ? precio : 0,
-                        Dificultad = txtDificultad.Text.ToLower() == "si",
-                        Desc = txtDesc.Text,
-                        ImagenId = aux 
-                    };
-                    CtrBaraja.getControlador().agregarArticuloMagico(nuevaBaraja);
-                    
-
-                    MessageBox.Show("Artículo mágico agregado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Después de guardar
-                    SetTextBoxReadOnly(false);
-
-                    // Habilitar botones Siguiente y Anterior
-                    btnSiguiente.Enabled = true;
-                    btnAnterior.Enabled = true;
-
-                    btnAgregar.Text = "Agregar"; // Cambiar el texto del botón de nuevo
-                    enModoEdicion = false; // Desactivar el modo edición
-                    controlador.GuardarListaEnFichero();
-                } 
         }
         
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -214,23 +222,22 @@ public partial class Mainviewmodel : ObservableObject
                 MostrarArticulo();  // Mostrar la información restaurada
 
                 // Salir del modo edición
-                SetTextBoxReadOnly(false);
                 enModoEdicion = false;
+                EstadoAnadir(enModoEdicion);
             }
-            // Habilitar botones Siguiente y Anterior
-            btnSiguiente.Enabled = true;
-            btnAnterior.Enabled = true;
         }
 
         private void btnImagenPD_Click(object sender, EventArgs e)
         {
             // Crear un nuevo OpenFileDialog
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
 
             // Configuración del diálogo de selección de archivo
             openFileDialog.Title = "Seleccionar una imagen"; // Título del diálogo
-            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;"; // Filtro para solo mostrar imágenes
-            openFileDialog.InitialDirectory = "C:/Users/Sebas/Desktop"; // Directorio inicial que se abrirá al abrir el diálogo (puedes cambiarlo según tu preferencia)
+            openFileDialog.Filters.Add(new FileDialogFilter() { Name = "Imágenes JPG", Extensions = { "jpg" } });
+            openFileDialog.Filters.Add(new FileDialogFilter() { Name = "Imágenes JPEG", Extensions = { "jpeg" } });
+            openFileDialog.InitialFileName = "C:/Users/Sebas/Desktop"; // Directorio inicial que se abrirá al abrir el diálogo
+            openFileDialog.AllowMultiple = false;
 
             // Mostrar el diálogo y comprobar si el usuario seleccionó un archivo
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -238,12 +245,12 @@ public partial class Mainviewmodel : ObservableObject
                 // Almacenar la ruta del archivo seleccionado
                 rutaImagenOriginal = openFileDialog.FileName;
 
-                // Aquí puedes almacenar la ruta de la imagen en una variable, como por ejemplo un campo de la clase 'Magia'
-                ImageDisplay.Image = Image.FromFile(rutaImagenOriginal);
+                // Aquí puedes almacenar la ruta de la imagen en una variable
+                Imagen = new Bitmap(rutaImagenOriginal);
 
-                ImageDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
-
+                //ImageDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
                 controlador.guardarImagen(rutaImagenOriginal, ++CtrBaraja.contadorId);
             }
         }
+        
 }

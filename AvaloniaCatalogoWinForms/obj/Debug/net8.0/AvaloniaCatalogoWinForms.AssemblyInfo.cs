@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AvaloniaCatalogoWinForms")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db39504fa0b90baf83dd34879083100bb5a1d7ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("AvaloniaCatalogoWinForms")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AvaloniaCatalogoWinForms")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

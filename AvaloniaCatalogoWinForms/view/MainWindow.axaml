@@ -49,23 +49,23 @@
                 <TextBlock Text="Descripción" Grid.Row="5" Grid.Column="1" Margin="20,12,0,5" Foreground="White" FontWeight="Bold"/>
 
                 <!-- Campos de entrada -->
-                <TextBox Text="{Binding Dato}"
+                <TextBox Text="{Binding TxBNombre}" IsEnabled="{Binding Habilitar}"
                          Grid.Row="1" Grid.Column="2"  BorderBrush="Black" 
                          BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" 
                          Margin="0,15,-10,0" Height="30"/>
-                <TextBox Text="{Binding Dato}"
+                <TextBox Text="{Binding TxBCategoria}" IsEnabled="{Binding Habilitar}"
                          Grid.Row="2" Grid.Column="2" BorderBrush="Black" 
                          BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" 
                          Margin="0,0,-10,0" Height="30"/>
-                <TextBox Text="{Binding Dato}"
+                <TextBox Text="{Binding TxBDificultad}" IsEnabled="{Binding Habilitar}"
                          Grid.Row="3" Grid.Column="2" BorderBrush="Black" 
                          BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" 
                          Margin="0,5,-10,0" Height="30"/>
-                <TextBox Text="{Binding Dato}"
+                <TextBox Text="{Binding TxBPrecio}" IsEnabled="{Binding Habilitar}"
                          Grid.Row="4" Grid.Column="2" BorderBrush="Black" 
                          BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" 
                          Margin="0,5,-10,0" Height="30"/>
-                <TextBox Text="{Binding Dato}"
+                <TextBox Text="{Binding TxBDesc}" IsEnabled="{Binding Habilitar}"
                          Grid.Row="5" Grid.Column="2" BorderBrush="Black" 
                          BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" 
                          Margin="0,5,-10,0" Height="30"/>
@@ -76,10 +76,12 @@
                 </Border>
 
                 <!-- Botones -->
-                <Button IsEnabled="{Binding BtnDeshabilitar}" Content="AÑADIR" Grid.Row="7" Grid.Column="1" Margin="15,30,15,25" HorizontalAlignment="Center"/>
-                <Button IsEnabled="{Binding BtnDeshabilitar}" Content="BORRAR" Grid.Row="7" Grid.Column="2" Margin="10,30,15,25" HorizontalAlignment="Center"/>
-                <Button Content="{Binding BtnAceptar}" Grid.Row="7" Grid.Column="4" Margin="-50,30,55,25" HorizontalAlignment="Center"/>
-                <Button TextInput="{Binding BtnCancelar}" Content="SIGUIENTE" Grid.Row="7" Grid.Column="5" Margin="-45,30,35,25" HorizontalAlignment="Center"/>
+                        
+                <Button IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnAnadir_Click}" Content="AÑADIR" Grid.Row="7" Grid.Column="1" Margin="15,30,15,25" HorizontalAlignment="Center"/>
+                <Button IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnBorrar_Click}" Content="{Binding BtnSiguiente}" Grid.Row="7" Grid.Column="2" Margin="10,30,15,25" HorizontalAlignment="Center"/>
+                <Button Content="{Binding BtnAnterior}" Grid.Row="7" Grid.Column="4" Margin="-50,30,55,25" HorizontalAlignment="Center"/>
+                <Button Content="{Binding BtnSiguiente}" Grid.Row="7" Grid.Column="5" Margin="-45,30,35,25" HorizontalAlignment="Center"/>
+                <Button IsEnabled="{Binding BtnCargarImagen}" Content="CargarImagen" Grid.Row="7" Grid.Column="1" Margin="15,30,15,25" HorizontalAlignment="Center"/>
                         
                           
                 <!--Text="{Binding Nombre}"-->
