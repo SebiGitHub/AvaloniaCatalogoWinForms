@@ -28,4 +28,19 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\incognita.jpg" />
+      <AvaloniaResource Include="Assets\incognita.jpg" />
+      <None Remove="Assets\fondo_catalogo.png" />
+      <AvaloniaResource Include="Assets\fondo_catalogo.png" />
+      <None Remove="Assets\Bicycle-Fire.jpg" />
+      <AvaloniaResource Include="Assets\Bicycle-Fire.jpg" />
+      <None Remove="Assets\BE.jpg" />
+      <AvaloniaResource Include="Assets\BE.jpg" />
+      <None Remove="Assets\Baraja1.jpeg" />
+      <AvaloniaResource Include="Assets\Baraja1.jpeg" />
+      <None Remove="Assets\815.jpg" />
+      <AvaloniaResource Include="Assets\815.jpg" />
+    </ItemGroup>
 </Project>
