@@ -1,0 +1,11 @@
+[
+  {
+    "ImagenId": 1,
+    "Tipo": 0,
+    "Nombre": "adasd",
+    "Categoria": "adsd",
+    "Dificultad": false,
+    "Precio": 24,
+    "Desc": "fd"
+  }
+]

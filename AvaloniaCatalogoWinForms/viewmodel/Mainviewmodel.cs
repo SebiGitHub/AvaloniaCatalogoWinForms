@@ -40,8 +40,9 @@ namespace AvaloniaApplication1.viewmodel
                 EstadoAnadir(enModoEdicion);
                 controlador = CtrBaraja.getControlador();
                 listaArticulos = controlador.ObtenerListaMagica() ?? new List<Baraja>();
+                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
                 MostrarArticulo();
-                Imagen = new Bitmap("incognita.jpg");
+                
             }
             catch (Exception ex)
             {
@@ -65,8 +66,10 @@ namespace AvaloniaApplication1.viewmodel
 
                     if (string.IsNullOrEmpty(TxBNombre) || string.IsNullOrEmpty(TxBCategoria))
                     {
+                        Console.WriteLine($"Nombre: {TxBNombre}, Categoria: {TxBCategoria}"); // Imprimir valores
                         throw new InvalidOperationException("Campos obligatorios no completados.");
                     }
+
 
                     Baraja nuevaBaraja = new Baraja
                     {
@@ -111,7 +114,7 @@ namespace AvaloniaApplication1.viewmodel
             try
             {
                 listaArticulos = controlador.ObtenerListaMagica() ?? new List<Baraja>();
-                Imagen = new Bitmap("incognita.jpg");
+                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
 
                 if (listaArticulos != null && listaArticulos.Count > 0)
                 {
@@ -122,10 +125,19 @@ namespace AvaloniaApplication1.viewmodel
                     TxBPrecio = articulo.Precio.ToString("F2");
                     TxBDesc = articulo.Desc;
 
-                    string imagePath = $"IMG/{articulo.ImagenId}.jpg";
+                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "IMG/", $"{articulo.ImagenId}.jpg");
+                    Console.WriteLine($"Buscando imagen en: {imagePath}");
+
                     if (File.Exists(imagePath))
                     {
-                        Imagen = new Bitmap(imagePath);
+                        using (var stream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                        {
+                            Imagen = new Bitmap(stream);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"La imagen {imagePath} no existe.");
                     }
                 }
                 else

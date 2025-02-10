@@ -91,17 +91,10 @@ namespace AvaloniaApplication1.viewmodel
 
                 int numGuardados = 0;
 
-                using (FileStream fs = new FileStream(Utils.FilePath, FileMode.OpenOrCreate))
-                using (BinaryWriter writer = new BinaryWriter(fs))
-                {
-                    foreach (var magia in lista_magica)
-                    {
-                        Utils.GuardarComun(magia, writer);
-                        numGuardados++;
-                    }
-                }
+                // Guardar la lista como JSON
+                File.WriteAllText(Utils.FilePath, Utils.SerializarListaMagica(lista_magica));
 
-                Console.WriteLine($"Guardados {numGuardados} registros.");
+                Console.WriteLine($"Guardados {numGuardados++} registros.");
             }
             catch (Exception ex)
             {

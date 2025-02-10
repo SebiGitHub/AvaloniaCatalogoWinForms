@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.Json;
 using AvaloniaApplication1.model;
 
 namespace AvaloniaApplication1.viewmodel
 {
     public static class Utils
     {
-        private const int BYTES_BARAJA = 107;
-        private const char MARCA_BARAJA = 'B';
-        internal const string FilePath = "C:/Users/Sebas/RiderProjects/AvaloniaApplication1/AvaloniaCatalogoWinForms/catalogo.dat";
+        internal const string FilePath = "C:/Users/Sebas/RiderProjects/AvaloniaApplication1/AvaloniaCatalogoWinForms/catalogo.json";
 
         public static void EliminarArticuloEnFichero(Baraja articuloEliminar, List<Baraja> lista_magica)
         {
@@ -17,6 +17,10 @@ namespace AvaloniaApplication1.viewmodel
             {
                 List<Baraja> listaMagica = CargarDesdeFichero();
                 listaMagica.RemoveAll(magia => magia.Nombre == articuloEliminar.Nombre);
+                
+                // Guardar la lista actualizada en el archivo JSON
+                File.WriteAllText(FilePath, SerializarListaMagica(listaMagica));
+
                 Console.WriteLine("Artículo eliminado del fichero.");
             }
             catch (Exception ex)
@@ -33,24 +37,24 @@ namespace AvaloniaApplication1.viewmodel
             {
                 try
                 {
-                    using (var fileStr = new FileStream(FilePath, FileMode.Open))
-                    using (BinaryReader reader = new BinaryReader(fileStr))
-                    {
-                        while (fileStr.Position < fileStr.Length - sizeof(Char))
-                        {
-                            char marca = reader.ReadChar();
-                            if (marca == MARCA_BARAJA && reader.SePuedenLeer(BYTES_BARAJA - sizeof(Char)))
-                            {
-                                string nombre = reader.ReadString().Trim();
-                                string categoria = reader.ReadString().Trim();
-                                bool dificultad = reader.ReadBoolean();
-                                double precio = reader.ReadDouble();
-                                string descripcion = reader.ReadString().Trim();
-                                int imagen = reader.ReadInt16();
+                    string jsonContent = File.ReadAllText(FilePath);
 
-                                listaBarajas.Add(new Baraja(nombre, categoria, dificultad, precio, descripcion, imagen));
-                            }
-                        }
+                    // Elimina caracteres de control no imprimibles, pero preserva otros válidos
+                    jsonContent = new string(jsonContent.Where(c => !char.IsControl(c) || c == '\r' || c == '\n').ToArray());
+
+                    if (string.IsNullOrWhiteSpace(jsonContent))
+                    {
+                        Console.WriteLine("El archivo JSON está vacío o solo tenía caracteres inválidos.");
+                        return new List<Baraja>();
+                    }
+
+                    try
+                    {
+                        listaBarajas = JsonSerializer.Deserialize<List<Baraja>>(jsonContent) ?? new List<Baraja>();
+                    }
+                    catch (JsonException ex)
+                    {
+                        Console.WriteLine($"Error de formato en JSON después de limpieza: {ex.Message}");
                     }
                 }
                 catch (Exception ex)
@@ -79,9 +83,10 @@ namespace AvaloniaApplication1.viewmodel
             }
         }
 
-        private static bool SePuedenLeer(this BinaryReader br, int numBytes)
+        // Método para serializar la lista de Barajas a JSON
+        public static string SerializarListaMagica(List<Baraja> listaBarajas)
         {
-            return br?.BaseStream.Length - br.BaseStream.Position >= numBytes;
+            return JsonSerializer.Serialize(listaBarajas);
         }
 
         private static string CompletarHasta(this string str, int tamanio)
