@@ -125,7 +125,7 @@ namespace AvaloniaApplication1.viewmodel
                     TxBPrecio = articulo.Precio.ToString("F2");
                     TxBDesc = articulo.Desc;
 
-                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "IMG/", $"{articulo.ImagenId}.jpg");
+                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "IMG", $"{articulo.ImagenId}.jpg");
                     Console.WriteLine($"Buscando imagen en: {imagePath}");
 
                     if (File.Exists(imagePath))
@@ -266,6 +266,7 @@ namespace AvaloniaApplication1.viewmodel
                     string rutaFoto = result[0];
                     Imagen = new Bitmap(rutaFoto);
                     controlador.guardarImagen(rutaFoto, ++CtrBaraja.contadorId);
+                    aux = CtrBaraja.contadorId;
                 }
             }
             catch (Exception ex)

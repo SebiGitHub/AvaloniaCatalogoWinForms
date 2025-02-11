@@ -16,6 +16,10 @@
             <Setter Property="Padding" Value="5"/>
         </Style>
         
+        <Style Selector="Button.UNA">
+            <Setter Property="Foreground" Value="Yellow"/>
+        </Style>
+        
         <Style Selector="Button:pointerover">
             <Setter Property="Background" Value="Red"/>
             <Setter Property="Foreground" Value="White"/>
