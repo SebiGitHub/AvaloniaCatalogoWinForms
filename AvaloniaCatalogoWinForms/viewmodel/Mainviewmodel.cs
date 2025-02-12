@@ -39,7 +39,7 @@ namespace AvaloniaApplication1.viewmodel
             {
                 EstadoAnadir(enModoEdicion);
                 controlador = CtrBaraja.getControlador();
-                listaArticulos = controlador.ObtenerListaMagica() ?? new List<Baraja>();
+                listaArticulos = controlador.ObtenerListaMagica();
                 Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
                 MostrarArticulo();
                 
@@ -113,7 +113,7 @@ namespace AvaloniaApplication1.viewmodel
         {
             try
             {
-                listaArticulos = controlador.ObtenerListaMagica() ?? new List<Baraja>();
+                listaArticulos = controlador.ObtenerListaMagica();
                 Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
 
                 if (listaArticulos != null && listaArticulos.Count > 0)

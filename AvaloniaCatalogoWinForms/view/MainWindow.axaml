@@ -23,18 +23,6 @@
                            Width="160" 
                            HorizontalAlignment="Left" 
                            VerticalAlignment="Top"/>
-
-                    <Button Classes="UNA"
-                            HorizontalAlignment="Stretch" 
-                            Background="#007ACC">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\listaimg.png"  Width="20"/>
-                            <TextBlock Text="BARAJAS" 
-                                       FontWeight="Bold" 
-                                       FontSize="15" 
-                                       Margin="5, 0, 0, 0"/>
-                        </StackPanel>
-                    </Button>
                     
                     <Button Classes="UNA"
                             Background="#28A745" 
@@ -65,7 +53,7 @@
                 
                 <Button Grid.Row="1" 
                         Classes="UNA"
-                        Background="#2F80ED" 
+                        Background="#777777" 
                         HorizontalAlignment="Stretch"
                         Margin="0,20,0,0">
                     <StackPanel Orientation="Horizontal">

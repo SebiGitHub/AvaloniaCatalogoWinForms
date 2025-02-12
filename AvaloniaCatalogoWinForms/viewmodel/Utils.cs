@@ -11,24 +11,6 @@ namespace AvaloniaApplication1.viewmodel
     {
         internal const string FilePath = "C:/Users/Sebas/RiderProjects/AvaloniaApplication1/AvaloniaCatalogoWinForms/catalogo.json";
 
-        public static void EliminarArticuloEnFichero(Baraja articuloEliminar, List<Baraja> lista_magica)
-        {
-            try
-            {
-                List<Baraja> listaMagica = CargarDesdeFichero();
-                listaMagica.RemoveAll(magia => magia.Nombre == articuloEliminar.Nombre);
-                
-                // Guardar la lista actualizada en el archivo JSON
-                File.WriteAllText(FilePath, SerializarListaMagica(listaMagica));
-
-                Console.WriteLine("Artículo eliminado del fichero.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al eliminar artículo: {ex.Message}");
-            }
-        }
-
         public static List<Baraja> CargarDesdeFichero()
         {
             List<Baraja> listaBarajas = new List<Baraja>();
@@ -65,33 +47,12 @@ namespace AvaloniaApplication1.viewmodel
 
             return listaBarajas;
         }
-
-        public static void GuardarComun(Baraja baraja, BinaryWriter writer)
-        {
-            try
-            {
-                writer.Write(baraja.Nombre.CompletarHasta(Baraja.TAM_MAX));
-                writer.Write(baraja.Categoria.CompletarHasta(Baraja.TAM_MAX));
-                writer.Write(baraja.Dificultad);
-                writer.Write(baraja.Precio);
-                writer.Write(baraja.Desc.CompletarHasta(Baraja.TAM_MAX));
-                writer.Write(baraja.ImagenId);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al guardar datos comunes: {ex.Message}");
-            }
-        }
-
+        
+        
         // Método para serializar la lista de Barajas a JSON
         public static string SerializarListaMagica(List<Baraja> listaBarajas)
         {
             return JsonSerializer.Serialize(listaBarajas);
-        }
-
-        private static string CompletarHasta(this string str, int tamanio)
-        {
-            return str.PadRight(tamanio, ' ');
         }
     }
 }
