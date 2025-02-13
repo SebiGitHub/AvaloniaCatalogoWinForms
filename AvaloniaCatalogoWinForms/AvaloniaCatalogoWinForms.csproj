@@ -10,37 +10,37 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.2.3" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+        <PackageReference Include="Avalonia" Version="11.2.3"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.3"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Include="Avalonia.Diagnostics" Version="11.2.3">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="view\MainWindow.axaml.cs">
-        <DependentUpon>MainWindow.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
+        <Compile Update="view\MainWindow.axaml.cs">
+            <DependentUpon>MainWindow.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Assets\incognita.jpg" />
-      <AvaloniaResource Include="Assets\incognita.jpg" />
-      <None Remove="Assets\fondo_catalogo.png" />
-      <AvaloniaResource Include="Assets\fondo_catalogo.png" />
-      <None Remove="Assets\Bicycle-Fire.jpg" />
-      <AvaloniaResource Include="Assets\Bicycle-Fire.jpg" />
-      <None Remove="Assets\BE.jpg" />
-      <AvaloniaResource Include="Assets\BE.jpg" />
-      <None Remove="Assets\Baraja1.jpeg" />
-      <AvaloniaResource Include="Assets\Baraja1.jpeg" />
-      <None Remove="Assets\815.jpg" />
-      <AvaloniaResource Include="Assets\815.jpg" />
+        <None Remove="Assets\incognita.jpg"/>
+        <AvaloniaResource Include="Assets\incognita.jpg"/>
+        <None Remove="Assets\fondo_catalogo.png"/>
+        <AvaloniaResource Include="Assets\fondo_catalogo.png"/>
+        <None Remove="Assets\Bicycle-Fire.jpg"/>
+        <AvaloniaResource Include="Assets\Bicycle-Fire.jpg"/>
+        <None Remove="Assets\BE.jpg"/>
+        <AvaloniaResource Include="Assets\BE.jpg"/>
+        <None Remove="Assets\Baraja1.jpeg"/>
+        <AvaloniaResource Include="Assets\Baraja1.jpeg"/>
+        <None Remove="Assets\815.jpg"/>
+        <AvaloniaResource Include="Assets\815.jpg"/>
     </ItemGroup>
 </Project>

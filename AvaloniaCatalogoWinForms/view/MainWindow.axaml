@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:AvaloniaApplication1.viewmodel"
         x:DataType="vm:Mainviewmodel"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         d:DesignWidth="700"
         d:DesignHeight="450"
         MinHeight="450"
@@ -13,137 +13,122 @@
         MaxWidth="700"
         x:Class="AvaloniaApplication1.view.MainWindow"
         Title="AvaloniaCatalogoWinForms">
-    
-    <Grid ColumnDefinitions="220,*" >
-        <!-- Nueva sección lateral -->
+
+    <!-- Definición del layout principal usando un Grid -->
+    <Grid ColumnDefinitions="220,*">
+        <!-- Sección lateral izquierda -->
         <Border Padding="20" Background="#ff0000">
             <Grid RowDefinitions="*, Auto">
+                <!-- StackPanel para organizar los botones verticalmente -->
                 <StackPanel Spacing="20">
-                    <Image Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\logo.png" 
-                           Width="160" 
-                           HorizontalAlignment="Left" 
-                           VerticalAlignment="Top"/>
-                    
-                    <Button Classes="UNA"
-                            Background="#28A745" 
-                            HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnAnadir_ClickCommand}" >
+                    <!-- Logo de la aplicación -->
+                    <Image
+                        Source="file:C:\\Users\\Sebas\\RiderProjects\\AvaloniaApplication1\\AvaloniaCatalogoWinForms\\Assets\\logo.png"
+                        Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+                    <!-- Botón "AGREGAR" -->
+                    <Button Classes="UNA" Background="#28A745" HorizontalAlignment="Stretch"
+                            IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnAnadir_ClickCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\mas.png"  Width="20"/>
-                            <TextBlock Text="AGREGAR" 
-                                       FontWeight="Bold" 
-                                       FontSize="15" 
-                                       Margin="5, 0, 0, 0"/>
+                            <Image
+                                Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\mas.png"
+                                Width="20" />
+                            <TextBlock Text="AGREGAR" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
-                    
-                    <Button Classes="UNA"
-                            Background="#DC3545" 
-                            HorizontalAlignment="Stretch"
-                            IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnBorrar_ClickCommand}" >
+
+                    <!-- Botón "BORRAR" o "LIMPIAR" -->
+                    <Button Classes="UNA" Background="#DC3545" HorizontalAlignment="Stretch"
+                            IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnBorrar_ClickCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\papelera.png"  Width="20"/>
-                            <TextBlock Text="{Binding BtnBorrar}" 
-                                       FontWeight="Bold" 
-                                       FontSize="15" 
-                                       Margin="5, 0, 0, 0"/>
+                            <Image
+                                Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\papelera.png"
+                                Width="20" />
+                            <TextBlock Text="{Binding BtnBorrar}" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                
-                <Button Grid.Row="1" 
-                        Classes="UNA"
-                        Background="#777777" 
-                        HorizontalAlignment="Stretch"
-                        Margin="0,20,0,0">
+
+                <!-- Botón "SALIR" en la parte inferior -->
+                <Button Grid.Row="1" Classes="UNA" Background="#777777" HorizontalAlignment="Stretch"
+                        Margin="0,20,0,0" Command="{Binding btnSalir_ClickCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\salir.png"  Width="20"/>
-                        <TextBlock Text="SALIR" 
-                                   FontWeight="Bold" 
-                                   FontSize="15" 
-                                   Margin="5, 0, 0, 0"/>
+                        <Image
+                            Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\salir.png"
+                            Width="20" />
+                        <TextBlock Text="SALIR" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                     </StackPanel>
                 </Button>
             </Grid>
         </Border>
 
-        <!-- Contenido original modificado -->
-        <Grid Grid.Column="1" ColumnDefinitions="100,100,100,100,100,80" 
-              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-              Margin="0">
-            
+        <!-- Contenido principal (sección derecha) -->
+        <Grid Grid.Column="1" ColumnDefinitions="100,100,100,100,100,80"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0">
+
+            <!-- Fondo de la sección principal -->
             <Grid.Background>
-                <ImageBrush Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\fondo_catalogo.png"
-                            Stretch="UniformToFill"
-                            AlignmentX="Left"
-                            AlignmentY="Top"/>
+                <ImageBrush
+                    Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\fondo_catalogo.png"
+                    Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" />
             </Grid.Background>
 
-            <Border Grid.Row="1" Grid.RowSpan="8" Grid.Column="1" Grid.ColumnSpan="5" 
-                    Background="Red"
-                    BorderBrush="White" 
-                    BorderThickness="5"
-                    CornerRadius="8"
-                    Padding="16">
-            </Border>
+            <!-- Borde decorativo -->
+            <Border Grid.Row="1" Grid.RowSpan="8" Grid.Column="1" Grid.ColumnSpan="5"
+                    Background="Red" BorderBrush="White" BorderThickness="5" CornerRadius="8" Padding="16" />
 
-            <!-- Título -->
-            <TextBlock Text="BARAJAS" 
-                       Grid.Row="0" 
-                       Grid.Column="3" 
-                       Margin="0,52,0,10" 
-                       FontSize="20"
-                       FontStyle="Italic"
-                       HorizontalAlignment="Center" 
-                       Foreground="Red" 
-                       FontWeight="Bold"/>
+            <!-- Título de la sección -->
+            <TextBlock Text="BARAJAS" Grid.Row="0" Grid.Column="3" Margin="0,52,0,10"
+                       FontSize="20" FontStyle="Italic" HorizontalAlignment="Center"
+                       Foreground="Red" FontWeight="Bold" />
 
-            <!-- Etiquetas -->
-            <TextBlock Text="Nombre" Grid.Row="1" Grid.Column="1" Margin="20,32,0,5" Foreground="White" FontWeight="Bold"/>
-            <TextBlock Text="Categoria" Grid.Row="2" Grid.Column="1" Margin="20,12,0,5" Foreground="White" FontWeight="Bold"/>
-            <TextBlock Text="Dificultad" Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" Foreground="White" FontWeight="Bold"/>
-            <TextBlock Text="Precio" Grid.Row="4" Grid.Column="1" Margin="20,12,0,5" Foreground="White" FontWeight="Bold"/>
-            <TextBlock Text="Descripción" Grid.Row="5" Grid.Column="1" Margin="20,12,0,5" Foreground="White" FontWeight="Bold"/>
+            <!-- Etiquetas de los campos -->
+            <TextBlock Text="Nombre" Grid.Row="1" Grid.Column="1" Margin="20,32,0,5" Foreground="White"
+                       FontWeight="Bold" />
+            <TextBlock Text="Categoria" Grid.Row="2" Grid.Column="1" Margin="20,12,0,5" Foreground="White"
+                       FontWeight="Bold" />
+            <TextBlock Text="Dificultad" Grid.Row="3" Grid.Column="1" Margin="20,12,0,5" Foreground="White"
+                       FontWeight="Bold" />
+            <TextBlock Text="Precio" Grid.Row="4" Grid.Column="1" Margin="20,12,0,5" Foreground="White"
+                       FontWeight="Bold" />
+            <TextBlock Text="Descripción" Grid.Row="5" Grid.Column="1" Margin="20,12,0,5" Foreground="White"
+                       FontWeight="Bold" />
 
-            <!-- Campos de entrada -->
-            <TextBox Text="{Binding TxBNombre}" IsEnabled="{Binding Habilitar}"
-                     Grid.Row="1" Grid.Column="2"  BorderBrush="Black" 
-                     BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" FontWeight="Bold"
-                     Margin="0,15,-10,0" Height="30"/>
-            <TextBox Text="{Binding TxBCategoria}" IsEnabled="{Binding Habilitar}"
-                     Grid.Row="2" Grid.Column="2" BorderBrush="Black" 
-                     BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" FontWeight="Bold"
-                     Margin="0,0,-10,0" Height="30"/>
-            <TextBox Text="{Binding TxBDificultad}" IsEnabled="{Binding Habilitar}"
-                     Grid.Row="3" Grid.Column="2" BorderBrush="Black" 
-                     BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" FontWeight="Bold"
-                     Margin="0,5,-10,0" Height="30"/>
+            <!-- Campos de entrada de texto -->
+            <TextBox Text="{Binding TxBNombre}" IsEnabled="{Binding Habilitar}" Grid.Row="1" Grid.Column="2"
+                     BorderBrush="Black" BorderThickness="3" Background="White" Foreground="Black"
+                     MinWidth="100" FontWeight="Bold" Margin="0,15,-10,0" Height="30" />
+            <TextBox Text="{Binding TxBCategoria}" IsEnabled="{Binding Habilitar}" Grid.Row="2" Grid.Column="2"
+                     BorderBrush="Black" BorderThickness="3" Background="White" Foreground="Black"
+                     MinWidth="100" FontWeight="Bold" Margin="0,0,-10,0" Height="30" />
+            <TextBox Text="{Binding TxBDificultad}" IsEnabled="{Binding Habilitar}" Grid.Row="3" Grid.Column="2"
+                     BorderBrush="Black" BorderThickness="3" Background="White" Foreground="Black"
+                     MinWidth="100" FontWeight="Bold" Margin="0,5,-10,0" Height="30" />
             <TextBox Text="{Binding TxBPrecio}" IsEnabled="{Binding Habilitar}"
-                     Grid.Row="4" Grid.Column="2" BorderBrush="Black" 
+                     Grid.Row="4" Grid.Column="2" BorderBrush="Black"
                      BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" FontWeight="Bold"
-                     Margin="0,5,-10,0" Height="30"/>
+                     Margin="0,5,-10,0" Height="30" />
             <TextBox Text="{Binding TxBDesc}" IsEnabled="{Binding Habilitar}"
-                     Grid.Row="5" Grid.Column="2" BorderBrush="Black" 
+                     Grid.Row="5" Grid.Column="2" BorderBrush="Black"
                      BorderThickness="3" Background="White" Foreground="Black" MinWidth="100" FontWeight="Bold"
-                     Margin="0,5,-10,0" Height="30"/>
+                     Margin="0,5,-10,0" Height="30" />
 
             <!-- Área de imagen -->
-            <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="4" 
-                    Background="Black" BorderBrush="White" BorderThickness="5" 
-                    Margin="0,15,0,0" Width="200" Height="200">
-                <Image Stretch="Uniform" Source="{Binding Imagen}"/>
+            <Border Grid.Row="1" Grid.RowSpan="6" Grid.Column="4" Background="Black"
+                    BorderBrush="White" BorderThickness="5" Margin="0,15,0,0" Width="200" Height="200">
+                <Image Stretch="Uniform" Source="{Binding Imagen}" />
             </Border>
 
-            <!-- Botones -->
-            <Button Command="{Binding btnAnterior_ClickCommand}" 
-                    Content="{Binding BtnAnterior}" Grid.Row="7" Grid.Column="4" Margin="-320,30,235,25" HorizontalAlignment="Center"/>
-                            
-            <Button Command="{Binding btnSiguiente_ClickCommand}" 
-                    Content="{Binding BtnSiguiente}" Grid.Row="7" Grid.Column="5" Margin="-315,30,230,25" HorizontalAlignment="Center"/>
-                            
-            <Button IsEnabled="{Binding BtnCargarImagen}" Command="{Binding btnCargarImagen_ClickCommand}" 
-                    Content="CargarImagen" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" Grid.Row="7" Grid.Column="1" 
-                    Margin="245,5,-365,45" HorizontalAlignment="Center"/>
+            <!-- Botones de navegación y acciones -->
+            <Button Command="{Binding btnAnterior_ClickCommand}" Content="{Binding BtnAnterior}"
+                    Grid.Row="7" Grid.Column="4" Margin="-320,30,235,25" HorizontalAlignment="Center" />
+            <Button Command="{Binding btnSiguiente_ClickCommand}" Content="{Binding BtnSiguiente}"
+                    Grid.Row="7" Grid.Column="5" Margin="-315,30,230,25" HorizontalAlignment="Center" />
+            <Button IsEnabled="{Binding BtnCargarImagen}" Command="{Binding btnCargarImagen_ClickCommand}"
+                    Content="CargarImagen"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                    Grid.Row="7" Grid.Column="1" Margin="245,5,-365,45" HorizontalAlignment="Center" />
         </Grid>
     </Grid>
 </Window>
