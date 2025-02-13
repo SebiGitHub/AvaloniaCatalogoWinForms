@@ -31,16 +31,51 @@
 
     <ItemGroup>
         <None Remove="Assets\incognita.jpg"/>
-        <AvaloniaResource Include="Assets\incognita.jpg"/>
+        <AvaloniaResource Include="Assets\incognita.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
         <None Remove="Assets\fondo_catalogo.png"/>
-        <AvaloniaResource Include="Assets\fondo_catalogo.png"/>
+        <AvaloniaResource Include="Assets\fondo_catalogo.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
         <None Remove="Assets\Bicycle-Fire.jpg"/>
-        <AvaloniaResource Include="Assets\Bicycle-Fire.jpg"/>
+        <AvaloniaResource Include="Assets\Bicycle-Fire.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
         <None Remove="Assets\BE.jpg"/>
-        <AvaloniaResource Include="Assets\BE.jpg"/>
+        <AvaloniaResource Include="Assets\BE.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
         <None Remove="Assets\Baraja1.jpeg"/>
-        <AvaloniaResource Include="Assets\Baraja1.jpeg"/>
+        <AvaloniaResource Include="Assets\Baraja1.jpeg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
         <None Remove="Assets\815.jpg"/>
-        <AvaloniaResource Include="Assets\815.jpg"/>
+        <AvaloniaResource Include="Assets\815.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Remove="Assets\listaimg.png" />
+        <AvaloniaResource Include="Assets\listaimg.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Remove="Assets\logo.png" />
+        <AvaloniaResource Include="Assets\logo.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Remove="Assets\mas.png" />
+        <AvaloniaResource Include="Assets\mas.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Remove="Assets\papelera.png" />
+        <AvaloniaResource Include="Assets\papelera.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Remove="Assets\salir.png" />
+        <AvaloniaResource Include="Assets\salir.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+        <None Update="catalogo.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>

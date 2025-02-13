@@ -11,7 +11,7 @@ namespace AvaloniaApplication1.viewmodel
     public static class Utils
     {
         // Ruta del archivo JSON donde se almacenan los datos de las barajas
-        internal const string FilePath = "C:/Users/Sebas/RiderProjects/AvaloniaApplication1/AvaloniaCatalogoWinForms/catalogo.json";
+        internal const string FilePath = "catalogo.json";
 
         // Método para cargar la lista de barajas desde un archivo JSON
         public static List<Baraja> CargarDesdeFichero()

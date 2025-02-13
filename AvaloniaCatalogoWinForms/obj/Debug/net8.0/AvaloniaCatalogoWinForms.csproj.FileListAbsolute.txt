@@ -67,3 +67,4 @@ C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\obj\D
 C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\obj\Debug\net8.0\Avalonia.9B3C2BC0.Up2Date
 C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\obj\Debug\net8.0\AvaloniaCatalogoWinForms.genruntimeconfig.cache
 C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\obj\Debug\net8.0\ref\AvaloniaCatalogoWinForms.dll
+C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\bin\Debug\net8.0\catalogo.json

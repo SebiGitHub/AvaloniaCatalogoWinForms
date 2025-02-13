@@ -23,7 +23,7 @@
                 <StackPanel Spacing="20">
                     <!-- Logo de la aplicación -->
                     <Image
-                        Source="file:C:\\Users\\Sebas\\RiderProjects\\AvaloniaApplication1\\AvaloniaCatalogoWinForms\\Assets\\logo.png"
+                        Source="/Assets/logo.png"
                         Width="160" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                     <!-- Botón "AGREGAR" -->
@@ -31,7 +31,7 @@
                             IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnAnadir_ClickCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image
-                                Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\mas.png"
+                                Source="/Assets\mas.png"
                                 Width="20" />
                             <TextBlock Text="AGREGAR" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                         </StackPanel>
@@ -42,7 +42,7 @@
                             IsEnabled="{Binding BtnHabilitar}" Command="{Binding btnBorrar_ClickCommand}">
                         <StackPanel Orientation="Horizontal">
                             <Image
-                                Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\papelera.png"
+                                Source="/Assets/papelera.png"
                                 Width="20" />
                             <TextBlock Text="{Binding BtnBorrar}" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                         </StackPanel>
@@ -55,7 +55,7 @@
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                     <StackPanel Orientation="Horizontal">
                         <Image
-                            Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\salir.png"
+                            Source="/Assets/salir.png"
                             Width="20" />
                         <TextBlock Text="SALIR" FontWeight="Bold" FontSize="15" Margin="5,0,0,0" />
                     </StackPanel>
@@ -70,7 +70,7 @@
             <!-- Fondo de la sección principal -->
             <Grid.Background>
                 <ImageBrush
-                    Source="file:C:\Users\Sebas\RiderProjects\AvaloniaApplication1\AvaloniaCatalogoWinForms\Assets\fondo_catalogo.png"
+                    Source="/Assets/fondo_catalogo.png"
                     Stretch="UniformToFill" AlignmentX="Left" AlignmentY="Top" />
             </Grid.Background>
 

@@ -95,7 +95,7 @@ namespace AvaloniaApplication1.viewmodel
                 if (File.Exists(Utils.FilePath))
                 {
                     var dt = DateTime.Now;
-                    File.Move(Utils.FilePath, $"catalogo_{dt:dd-MM-yyyy}_{dt.Ticks}_.dat");
+                    File.Move(Utils.FilePath, $"catalogo_{dt:dd-MM-yyyy}_{dt.Ticks}_.json");
                 }
 
                 // Guardar la lista serializada en el fichero
