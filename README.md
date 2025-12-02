@@ -1,6 +1,1 @@
-Catálogo de artículos / gestor de inventario (o similar) en C# con interfaz de escritorio
-
-Aplicación de escritorio escrita en C# que usa tecnologías de .NET (WinForms + posible integración con Avalonia UI) para ofrecer un catálogo de datos con interfaz gráfica. Permite gestionar ítems —listarlos, visualizarlos y posiblemente editarlos— mediante una interfaz propia de escritorio. Este proyecto refleja:
-- Conocimiento en desarrollo de apps de escritorio con C#/.NET.
-- Organización de una solución con archivos de proyecto, definición clara de estructura (solución, proyectos) y buenas prácticas de desarrollo.
-- Habilidad para trabajar con interfaces gráficas, lógica de negocio y persistencia u organización de datos (según implementación).
+Este proyecto es una aplicación de escritorio con interfaz gráfica (usando tecnologías .NET — presumiblemente WinForms y/o la librería UI Avalonia) que funciona como un catálogo de ítems o productos. Permite gestionar un conjunto de registros: añadir nuevos elementos, editar sus datos, eliminarlos, mostrarlos en listados, posiblemente ordenar o filtrar — en resumen: un CRUD con interfaz de usuario. Su propósito es servir como catálogo local: alguien puede usarlo para mantener un inventario, lista de productos, recursos, activos o cualquier colección de datos que requiera gestión manual. Es útil cuando se quiere una aplicación desktop ligera para organizar información sin depender de bases de datos complejas ni de infraestructura externa.
