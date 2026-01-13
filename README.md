@@ -10,6 +10,7 @@ Aplicación de escritorio en C# orientada a gestionar/visualizar un catálogo (p
 - UI: Avalonia UI (11.2.3)
 - IDE: Visual Studio 2022
 - Arquitectura: MVVM
+- Persistencia: JSON
 
 ## Features
 - Listado de ítems del catálogo con vista detallada
