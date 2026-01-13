@@ -3,7 +3,7 @@
 ## Qué es
 Aplicación de escritorio en C# orientada a gestionar/visualizar un catálogo (productos u otros ítems), construida para practicar UI desktop y comparar enfoques (Avalonia vs WinForms) si el proyecto incluye ambas versiones.
 
-> Si el repo contiene dos implementaciones (Avalonia + WinForms), indícalo claramente. Si es solo Avalonia, elimina la parte WinForms.
+Contiene dos implementaciones (Avalonia + WinForms), indícalo claramente.
 
 ## Stack
 - C# / .NET: net8.0
