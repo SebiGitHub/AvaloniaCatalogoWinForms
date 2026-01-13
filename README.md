@@ -1,15 +1,35 @@
-¿Qué es?
+# AvaloniaCatalogoWinForms
 
-AvaloniaCatalogoWinForms es una aplicación de escritorio que utiliza — y mezcla — frameworks de interfaz gráfica como Windows Forms (WinForms) y Avalonia UI para gestionar un catálogo de elementos o productos: permite añadir, editar, eliminar ítems, listarlos, y mostrar sus detalles.
-Contexto: WinForms es un toolkit tradicional de .NET para interfaces Windows, basado en controles nativos del sistema. 
-Avalonia, en cambio, es un framework moderno, multiplataforma, inspirado en paradigmas similares a los de WPF, pero con soporte para Windows, macOS, Linux, incluso móvil o WebAssembly. 
-El proyecto combina o explora este stack para crear un gestor de catálogo con UI gráfica.
+## Qué es
+Aplicación de escritorio en C# orientada a gestionar/visualizar un catálogo (productos u otros ítems), construida para practicar UI desktop y comparar enfoques (Avalonia vs WinForms) si el proyecto incluye ambas versiones.
 
-¿Para qué sirve?
+> Si el repo contiene dos implementaciones (Avalonia + WinForms), indícalo claramente. Si es solo Avalonia, elimina la parte WinForms.
 
-Esta aplicación sirve para tener un sistema local de catálogo — productos, inventario, ítems — ideal para pequeñas empresas, tiendas, o simplemente para practicar la gestión de datos + interfaz gráfica. Permite gestionar fácilmente un listado de elementos: creación, edición, eliminación, visualización. Es útil si se requiere un inventario, un registro de recursos, un CRUD con interfaz, o un prototipo de herramienta de gestión.
-Además, dado que usa Avalonia/WinForms, puede servir como base para lanzar versiones multiplataforma (si se usa Avalonia) o adaptadas a Windows, con interfaz gráfica robusta.
+## Stack
+- C# / .NET: net8.0
+- UI: Avalonia UI (11.2.3)
+- IDE: Visual Studio 2022
+- Arquitectura: MVVM
 
-Propósito
+## Features
+- Listado de ítems del catálogo con vista detallada
+- Búsqueda/filtrado por campos (nombre, categoría, etc.)
+- CRUD básico: crear, editar y eliminar
+- Navegación entre pantallas/vistas
 
-El propósito principal es aprender y demostrar competencias en desarrollo de aplicaciones de escritorio con .NET: diseño de interfaz gráfica, manejo de datos, gestión de estados, persistencia local (o en base de datos), diseño de experiencia de usuario en entorno Windows o multiplataforma. También sirve como ejemplo tangible de capacidad para construir herramientas internas — algo muy valorado en el mundo del software corporativo.
+## Capturas/GIF
+<img width="777" height="500" alt="image" src="https://github.com/user-attachments/assets/fad85933-4ebf-4594-8d26-6e2ebc63aa0d" />
+<img width="800" height="420" alt="image" src="https://github.com/user-attachments/assets/237d7c1b-5304-4135-8386-d198752f14cf" />
+<img width="800" height="449" alt="image" src="https://github.com/user-attachments/assets/a8d14dce-bd93-4554-8677-f12c719a4e34" />
+
+## Cómo ejecutar
+1. Clona el repositorio
+2. Abre la solución `.sln` en Visual Studio
+3. Restaura dependencias (NuGet Restore)
+4. Ejecuta (F5)
+
+## Qué aprendí
+- Montar UI desktop en .NET con un framework moderno (Avalonia) y/o WinForms
+- Patrón MVVM (si aplica): separación UI / lógica / modelos
+- Importancia de la higiene del repo: `.vs`, `bin/`, `obj/` y archivos `.user` no deben subirse
+- Estructurar un proyecto para que sea entendible por terceros (README + capturas + run steps)
