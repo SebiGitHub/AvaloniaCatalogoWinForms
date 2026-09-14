@@ -16,7 +16,7 @@ public class Baraja
         this.Dificultad = dificultad;
         this.precio = precio;
         this.desc = desc;
-        ImagenId = ImagenId;
+        ImagenId = imagen;
     }
 
     public Baraja()

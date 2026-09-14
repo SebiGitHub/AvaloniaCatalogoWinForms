@@ -10,7 +10,7 @@
         MinHeight="450"
         MaxHeight="450"
         MinWidth="905"
-        MaxWidth="700"
+        Width="960"
         x:Class="AvaloniaApplication1.view.MainWindow"
         Title="AvaloniaCatalogoWinForms">
 

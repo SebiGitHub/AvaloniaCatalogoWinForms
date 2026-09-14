@@ -60,7 +60,7 @@ namespace AvaloniaApplication1.viewmodel
                 listaArticulos = controlador.ObtenerListaMagica();
 
                 // Cargar una imagen predeterminada
-                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
+                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "incognita.jpg"));
 
                 // Configurar el estado inicial de los botones
                 EstadoAnadir(enModoEdicion);
@@ -91,9 +91,7 @@ namespace AvaloniaApplication1.viewmodel
                     BtnAnterior = "CANCELAR";
                     Habilitar = true;
 
-                    // Crear una nueva baraja con los datos actuales y agregarla al controlador
-                    var nuevaBaraja = CrearBarajaDesdeCampos();
-                    controlador.agregarArticuloMagico(nuevaBaraja);
+                    // Entrar en modo alta no crea registros; solo GUARDAR los persiste.
                 }
                 else
                 {
@@ -121,7 +119,7 @@ namespace AvaloniaApplication1.viewmodel
                 Nombre = TxBNombre,
                 Categoria = TxBCategoria,
                 Precio = double.TryParse(TxBPrecio, out double precio) ? precio : 0,
-                Dificultad = TxBDificultad.ToLower() == "si",
+                Dificultad = string.Equals(TxBDificultad?.Trim(), "si", StringComparison.OrdinalIgnoreCase) || string.Equals(TxBDificultad?.Trim(), "sí", StringComparison.OrdinalIgnoreCase) || string.Equals(TxBDificultad?.Trim(), "true", StringComparison.OrdinalIgnoreCase),
                 Desc = TxBDesc,
                 ImagenId = aux
             };
@@ -135,7 +133,7 @@ namespace AvaloniaApplication1.viewmodel
             TxBDificultad = "";
             TxBPrecio = "";
             TxBDesc = "";
-            Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
+            Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "incognita.jpg"));
         }
 
         // Método para mostrar el artículo actual en la interfaz
@@ -147,12 +145,13 @@ namespace AvaloniaApplication1.viewmodel
                 listaArticulos = controlador.ObtenerListaMagica();
 
                 // Cargar una imagen predeterminada
-                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "incognita.jpg"));
+                Imagen = new Bitmap(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "incognita.jpg"));
 
                 // Verificar si hay artículos en la lista
                 if (listaArticulos != null && listaArticulos.Count > 0)
                 {
                     // Obtener el artículo actual
+                    posicionActual = Math.Clamp(posicionActual, 0, listaArticulos.Count - 1);
                     var articulo = listaArticulos[posicionActual];
 
                     // Actualizar los campos de la interfaz con los datos del artículo
@@ -210,6 +209,7 @@ namespace AvaloniaApplication1.viewmodel
                     controlador.GuardarListaEnFichero();
                     enModoEdicion = false;
                     EstadoAnadir(enModoEdicion);
+                    MostrarArticulo();
                 }
                 else if (posicionActual < listaArticulos.Count - 1)
                 {
@@ -316,7 +316,7 @@ namespace AvaloniaApplication1.viewmodel
                 var openFileDialog = new OpenFileDialog
                 {
                     Title = "Seleccionar una imagen",
-                    InitialFileName = "C:/Users/Sebas/Desktop",
+                    Directory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
                     AllowMultiple = false
                 };
                 openFileDialog.Filters.Add(new FileDialogFilter { Name = "Imágenes JPG", Extensions = { "jpg" } });
